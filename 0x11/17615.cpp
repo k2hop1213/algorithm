@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <stdc++.h>
 using namespace std;
 
 int main() {
@@ -9,33 +9,81 @@ int main() {
 	string s;
 	cin >> n;
 	cin >> s;
-	auto get_cnt = [&](string str, char color) {
-		int cnt = 0;
-		int len = str.length();
-		for (int i = len - 1; i > 0; i--) {
-			if (str[i] == color) {
-				if (str[i] != str[i - 1]) { 
-					cnt++;
-					for (int j = i - 1; j > 0; j--) {
-						if (str[j] == str[j - 1]) cnt++; 
-						else { i = j; break; }
+	int cnt1 = 0;
+	for (int i = s.length() - 1; i > 0; i--) {
+		if (s[i] == 'R') {
+			if (s[i] != s[i - 1]) {
+				cnt1++;
+				for (int j = i - 1; j > 0; j--) {
+					if (s[j] == s[j - 1]) {
+						cnt1++;
+					}
+					else {
+						i = j;
+						break;
 					}
 				}
+
 			}
 		}
-		return cnt;
-		};
+	}
+	int cnt2 = 0;
+	for (int i = s.length() - 1; i > 0; i--) {
+		if (s[i] == 'B') {
+			if (s[i] != s[i - 1]) {
+				cnt2++;
+				for (int j = i - 1; j > 0; j--) {
+					if (s[j] == s[j - 1]) {
+						cnt2++;
+					}
+					else {
+						i = j;
+						break;
+					}
+				}
 
-	int res1 = get_cnt(s, 'R');
-	int res2 = get_cnt(s, 'B');
-
-	
+			}
+		}
+	}
 	reverse(s.begin(), s.end());
 
-	int res3 = get_cnt(s, 'R');
-	int res4 = get_cnt(s, 'B');
+	int cnt3 = 0;
+	for (int i = s.length() - 1; i > 0; i--) {
+		if (s[i] == 'R') {
+			if (s[i] != s[i - 1]) {
+				cnt3++;
+				for (int j = i - 1; j > 0; j--) {
+					if (s[j] == s[j - 1]) {
+						cnt3++;
+					}
+					else {
+						i = j;
+						break;
+					}
+				}
 
-	cout << min({ res1, res2, res3, res4 });
+			}
+		}
+	}
+	int cnt4 = 0;
+	for (int i = s.length() - 1; i > 0; i--) {
+		if (s[i] == 'B') {
+			if (s[i] != s[i - 1]) {
+				cnt4++;
+				for (int j = i - 1; j > 0; j--) {
+					if (s[j] == s[j - 1]) {
+						cnt4++;
+					}
+					else {
+						i = j;
+						break;
+					}
+				}
+
+			}
+		}
+	}
+	cout << min({ cnt1,cnt2,cnt3,cnt4 });
 
 	return 0;
 }
